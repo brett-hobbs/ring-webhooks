@@ -1,0 +1,20 @@
+{
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "eslint.enable": true,
+  "eslint.options": {
+    "configFile": "./.eslintrc.json"
+  },
+  "prettier.eslintIntegration": true,
+  "prettier.printWidth": 120,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bundles": true
+  },
+  "files.exclude": {
+    "node_modules/": true
+  }
+}

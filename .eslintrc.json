@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": false,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+    "console": true,
+    "exports": true,
+    "global": false,
+    "module": false
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": ["error", "unix"],
+    "no-console": "off"
+  },
+  "plugins": ["json"]
+}

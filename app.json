@@ -1,0 +1,26 @@
+{
+  "name": "Webhook Slackbot",
+  "description": "A Slackbot that listens to a channel and sends the full message as a webhook",
+  "repository": "https://github.com/brett-hobbs/webhook-slackbot",
+  "success_url": "/",
+  "env": {
+    "SLACK_TOKEN": {
+      "description": "Slack bot RTM API token",
+      "required": true
+    },
+    "WEBHOOK_URL": {
+      "description": "Outgoing webhook url or urls delimited by a semicolon",
+      "required": true
+    },
+    "MESSAGE_FILTER_FIELD": {
+      "description": "Optional field on which to filter, used in conjunction with MESSAGE_FILTER_TEXT",
+      "required": false
+    },
+    "MESSAGE_FILTER_TEXT": {
+      "description": "Text (substring) expected in the filter field",
+      "required": false
+    },
+    "NODE_ENV": "staging"
+  },
+  "image": "heroku/nodejs"
+}
