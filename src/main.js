@@ -1,18 +1,17 @@
-import { sendNewRings } from './runner'
+import { Runner } from './runner'
 
+// Set these variables
 const WebhookUrl = ''
 const email = ''
 const password = ''
 
-let lastRingId = null
 const OneMinute = 60 * 1000
 
-setInterval(
-  function(lastRingId) {
-    sendNewRings(email, password, WebhookUrl, lastRingId).then(last => {
-      lastRingId = last
-    })
-  },
-  OneMinute,
-  lastRingId
-)
+const runner = new Runner(email, password)
+
+// Don't send old events
+runner.sendNewRings()
+
+setInterval(function() {
+  runner.sendNewRings(WebhookUrl)
+}, OneMinute)

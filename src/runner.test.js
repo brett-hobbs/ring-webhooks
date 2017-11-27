@@ -1,7 +1,7 @@
 import nock from 'nock'
 import request from 'request-promise'
 import { fakeHistory } from './test_data/sample_history'
-import { sendNewRings } from './runner'
+import { Runner } from './runner'
 
 function mockRingCalls(fakeHistory) {
   nock('https://api.ring.com')
@@ -23,32 +23,33 @@ function mockRingCalls(fakeHistory) {
     })
 }
 
+let runner
+
+beforeEach(() => {})
+
 test('No rings', () => {
   mockRingCalls([])
-  return sendNewRings('username', 'password', 'webhook.url', null).then(result => expect(result).toBe(null))
-})
-
-test('No rings with lastId', () => {
-  const lastId = 123456
-  mockRingCalls([])
-  return sendNewRings('username', 'password', 'webhook.url', lastId).then(result => expect(result).toBe(lastId))
+  runner = new Runner('email', 'password')
+  return runner.sendNewRings('webhook.url').then(result => expect(result).toBe(0))
 })
 
 test('New new rings', () => {
   const lastId = '6489929745876933000'
   mockRingCalls(fakeHistory)
+  runner = new Runner('email', 'password', lastId)
   request.post = jest.fn().mockReturnValue(Promise.resolve())
-  return sendNewRings('username', 'password', 'webhook.url', lastId).then(result => {
+  return runner.sendNewRings('webhook.url').then(result => {
     expect(request.post.mock.calls.length).toBe(0)
-    expect(result).toBe(lastId)
+    expect(result).toBe(0)
   })
 })
 
 test('New rings', () => {
   mockRingCalls(fakeHistory)
+  runner = new Runner('email', 'password')
   request.post = jest.fn().mockReturnValue(Promise.resolve())
-  return sendNewRings('username', 'password', 'webhook.url', null).then(result => {
+  return runner.sendNewRings('webhook.url').then(result => {
     expect(request.post.mock.calls.length).toBe(3)
-    expect(result).toBe('6489929745876933000')
+    expect(result).toBe(3)
   })
 })
