@@ -1,13 +1,15 @@
 import { Runner } from './runner'
+import config from './config'
 
-// Set these variables
-const WebhookUrl = ''
-const email = ''
-const password = ''
+const WebhookUrl = config('WEBHOOK_URL')
+const email = config('RING_EMAIL')
+const password = config('RING_PASSWORD')
 
 const OneMinute = 60 * 1000
 
 const runner = new Runner(email, password)
+
+console.log(email, password)
 
 // Don't send old events
 runner.sendNewRings()

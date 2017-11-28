@@ -1,26 +1,23 @@
 {
-  "name": "Webhook Slackbot",
-  "description": "A Slackbot that listens to a channel and sends the full message as a webhook",
-  "repository": "https://github.com/brett-hobbs/webhook-slackbot",
+  "name": "Better webhooks for a Ring Doorbell",
+  "description":
+    "A node service that listens for doorbell rings and send the full event (with temp video url) as a webhook",
+  "repository": "https://github.com/brett-hobbs/ring-webhooks",
   "success_url": "/",
   "env": {
-    "SLACK_TOKEN": {
-      "description": "Slack bot RTM API token",
-      "required": true
-    },
     "WEBHOOK_URL": {
       "description": "Outgoing webhook url or urls delimited by a semicolon",
       "required": true
     },
-    "MESSAGE_FILTER_FIELD": {
+    "RING_EMAIL": {
       "description": "Optional field on which to filter, used in conjunction with MESSAGE_FILTER_TEXT",
       "required": false
     },
-    "MESSAGE_FILTER_TEXT": {
+    "RING_PASSWORD": {
       "description": "Text (substring) expected in the filter field",
       "required": false
     },
-    "NODE_ENV": "staging"
+    "NODE_ENV": "production"
   },
   "image": "heroku/nodejs"
 }
