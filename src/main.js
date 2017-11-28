@@ -15,5 +15,7 @@ console.log(email, password)
 runner.sendNewRings()
 
 setInterval(function() {
-  runner.sendNewRings(WebhookUrl)
+  runner.sendNewRings(WebhookUrl).then(count => {
+    console.log(`${count} new rings`)
+  })
 }, OneMinute)
